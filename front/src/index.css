@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+:root {
+  --main-color: #4b84c5;
+  --main-color-light: #67a8ea;
+  --grey-color: #bfbfbf;
+  --primary-color: #000;
+  --secondary-color: #fff;
+  --border-color: #ddd;
+  --primary-blue: #4b84c5;  /* Your nav bar blue color */
+  --app-blue: #1a73e8;      /* Main blue - kept the same */
+  --text-dark: #202124;     /* Darker text for better contrast */
+  --text-gray: #5f6368;     /* Slightly darker gray for better readability */
+  --hover-blue: #1557b0;    /* Darker blue for hover states */
+  font-family: "Montserrat", sans-serif;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*  ----------  NAVIGATION BAR  --------------------- */
+
+nav {
+  background-color: var(--main-color);
+  padding: 10px 50px;
+
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--app-blue);
+}
+
+.nav-item.active {
+  background-color: var(--app-blue);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/*  ----------  HEADER  --------------------- */
+
+header {
+  margin: 0 50px 0px;
+  text-align: center;
+}
+
+/*  ----------  HEADINGS  --------------------- */
+
+h1 {
+  padding: 30px 20px 20px;
+  font-size: 3em;
+  color: var(--main-color);
+}
+
+h2 {
+  padding: 10px;
+  font-size: 2em;
+  color: var(--main-color-light);
+}
+h3 {
+  padding: 10px;
+  font-size: 0.5em;
+  color: var(--grey-color);
+}
+
+/*  ----------   FORMS  --------------------- */
+form {
+  width: 50%;
+
+  margin: auto;
+  margin-top: 2em;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 30px;
+
+  border: 1px solid var(--grey-color);
+  border-radius: 20px;
+}
+
+input,
+textarea {
+  width: 100%;
+
+  padding: 20px;
+
+  font-family: inherit;
+  font-size: 1em;
+
+  border: 1px solid var(--grey-color);
+  border-radius: 15px;
+}
+
+button.main {
+  width: 100%;
+
+  margin-top: 30px;
+  padding: 20px;
+
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background: var(--main-color);
+}
+
+button:hover {
+  background: var(--main-color-light);
+}
+
+/*  ----------  CARDS  --------------------- */
+
+.article-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.article-card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 60px; /* Space for view button */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-header {
+  margin-bottom: 15px;
+}
+
+.article-title, 
+.journalist-title {
+  color: var(--app-blue);
+  font-weight: 500;
+}
+
+.article-title {
+  color: var(--app-blue);
+  font-size: 1.5em;  /* Restore original size */
+  margin-bottom: 10px;
+}
+
+.journalist-title {
+  color: var(--app-blue);
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.5em;  /* Keep original page title size */
+  font-weight: 500;
+}
+
+.journalist-byline {
+  color: var(--text-gray);
+  margin: 0;
+}
+
+.journalist-link {
+  color: var(--byline-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.view-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  background-color: var(--app-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.view-button:hover {
+  background-color: var(--hover-blue);
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.nav-button {
+  padding: 8px 16px;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* Hide nav buttons on main page */
+.article-list .nav-container {
+  display: none;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  color: var(--text-gray);
+  background: white;
+  border: 1px solid var(--text-gray);
+  border-radius: 4px;
+  margin-top: 15px;
+  width: fit-content;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.category-tag:hover {
+  background: #f8f9fa;
+}
+
+.article-page .category-tag {
+  display: inline-block; /* Shown on article view page */
+  padding: 5px 12px;
+  background: white;
+  border: 1px solid var(--primary-blue);
+  border-radius: 4px;
+  margin-top: 15px;
+  color: var(--primary-blue);
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button.primary {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+}
+
+.button.primary:hover {
+  background: #0056b3;
+}
+
+/* Secondary button style */
+.button-secondary {
+  padding: 10px 14px;
+  background-color: var(--main-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.button-secondary:hover {
+  background-color: var(--main-color-light);
+}
+
+/* Tertiary button style */
+.button-tertiary {
+  padding: 10px 14px;
+  background-color: transparent;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.button-tertiary:hover {
+  background-color: var(--main-color-light);
+  color: white;
+  border-color: var(--main-color-light);
+}
+
+.journalist-section {
+  margin-top: 30px;
+  padding: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.article-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.journalist-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.article-card {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card .content {
+    display: none;  /* Hide content by default */
+}
+
+.article-page .content {  /* Show content only in article view */
+    display: block;
+    margin: 20px 0;
+}
+
+.content {
+  color: var(--text-dark);
+  margin: 20px 0;
+  line-height: 1.6;
+}

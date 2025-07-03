@@ -1,13 +1,23 @@
 import express from "express";
 import cors from "cors";
-import articleRouter from "./routes/articleRoutes.js";
+import router from "./routes/beekeeperRoutes.js";
+import beeSpeciesRoutes from "./routes/beeSpeciesRoutes.js";
+import hiveRoutes from "./routes/hiveRoutes.js";
+import environmentRoutes from "./routes/environmentRoutes.js";
+import plantRoutes from "./routes/plantRoutes.js";
+import honeyRoutes from "./routes/honeyRoutes.js";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 // Mount routes
-app.use("/api/articles", articleRouter);
+app.use("/api/beekeepers", router);
+app.use("/api/beespecies", beeSpeciesRoutes);
+app.use("/api/hives", hiveRoutes);
+app.use("/api/environment", environmentRoutes);
+app.use("/api/plants", plantRoutes);
+app.use("/api/honey", honeyRoutes);
 
 const PORT = 4000;
 app.listen(PORT, () => {

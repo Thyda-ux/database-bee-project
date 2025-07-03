@@ -1,198 +1,162 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 :root {
-  --main-color: #4b84c5;
-  --main-color-light: #67a8ea;
-  --grey-color: #bfbfbf;
-  --primary-color: #000;
-  --secondary-color: #fff;
-  --border-color: #ddd;
-  --primary-blue: #4b84c5;  /* Your nav bar blue color */
-  --app-blue: #1a73e8;      /* Main blue - kept the same */
-  --text-dark: #202124;     /* Darker text for better contrast */
-  --text-gray: #5f6368;     /* Slightly darker gray for better readability */
-  --hover-blue: #1557b0;    /* Darker blue for hover states */
+  --bee-yellow: #ffe066;
+  --bee-dark: #222;
+  --bee-brown: #b48a3c;
+  --bee-white: #fffde7;
+  --bee-border: #ffbe0b;
+  --bee-shadow: rgba(255, 190, 11, 0.08);
   font-family: "Montserrat", sans-serif;
 }
 
-* {
+body {
+  background: linear-gradient(135deg, var(--bee-white) 0%, var(--bee-yellow) 100%);
+  min-height: 100vh;
   margin: 0;
-  box-sizing: border-box;
 }
-
-/*  ----------  NAVIGATION BAR  --------------------- */
-
-nav {
-  background-color: var(--main-color);
-  padding: 10px 50px;
-
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.nav-item {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2em;
-  padding: 8px 16px;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-item:hover {
-  background-color: var(--app-blue);
-}
-
-.nav-item.active {
-  background-color: var(--app-blue);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/*  ----------  HEADER  --------------------- */
 
 header {
-  margin: 0 50px 0px;
+  background: var(--bee-border);
+  color: var(--bee-dark);
+  padding: 2rem 0 1rem 0;
   text-align: center;
+  box-shadow: 0 2px 8px var(--bee-shadow);
+  margin: 0 50px 0px;
 }
 
-/*  ----------  HEADINGS  --------------------- */
-
 h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
   padding: 30px 20px 20px;
-  font-size: 3em;
-  color: var(--main-color);
+  color: var(--bee-brown);
 }
 
 h2 {
   padding: 10px;
   font-size: 2em;
-  color: var(--main-color-light);
+  color: var(--bee-dark);
 }
 h3 {
   padding: 10px;
-  font-size: 0.5em;
-  color: var(--grey-color);
+  font-size: 1.2em;
+  color: var(--bee-brown);
 }
 
-/*  ----------   FORMS  --------------------- */
-form {
-  width: 50%;
-
-  margin: auto;
-  margin-top: 2em;
-
+nav {
+  background: var(--bee-brown);
   display: flex;
-  flex-direction: column;
+  flex-wrap: nowrap;         /* Prevent wrapping */
+  justify-content: flex-start;
+  align-items: center;
   gap: 10px;
-
-  padding: 30px;
-
-  border: 1px solid var(--grey-color);
-  border-radius: 20px;
+  padding: 10px 0;
+  border-radius: 12px;
+  margin: 0 auto 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 2px 8px var(--bee-shadow);
+  overflow-x: auto;          /* Allow horizontal scroll if needed */
+  overflow-y: hidden;
+  white-space: nowrap;       /* Prevent text from wrapping */
 }
 
+.nav-item {
+  color: var(--bee-white);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin: 0 2px;
+  white-space: nowrap;       /* Prevent text from wrapping */
+}
+
+#root {
+  margin: 2rem auto;
+  max-width: 900px; /* was 1200px, now a bit narrower */
+  background: var(--bee-white);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px var(--bee-shadow);
+  padding: 2rem 1.5rem; /* add horizontal padding */
+}
+
+button,
 input,
 textarea {
-  width: 100%;
-
-  padding: 20px;
-
   font-family: inherit;
-  font-size: 1em;
-
-  border: 1px solid var(--grey-color);
-  border-radius: 15px;
-}
-
-button.main {
-  width: 100%;
-
-  margin-top: 30px;
-  padding: 20px;
-
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #fff;
-
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  background: var(--main-color);
-}
-
-button:hover {
-  background: var(--main-color-light);
-}
-
-/*  ----------  CARDS  --------------------- */
-
-.article-list {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.article-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.article-card {
-  position: relative;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  padding-bottom: 60px; /* Space for view button */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.article-header {
-  margin-bottom: 15px;
-}
-
-.article-title, 
-.journalist-title {
-  color: var(--app-blue);
-  font-weight: 500;
-}
-
-.article-title {
-  color: var(--app-blue);
-  font-size: 1.5em;  /* Restore original size */
+  border: 1px solid var(--bee-brown);
+  padding: 10px;
   margin-bottom: 10px;
 }
 
-.journalist-title {
-  color: var(--app-blue);
-  text-align: center;
-  margin: 30px 0;
-  font-size: 2.5em;  /* Keep original page title size */
-  font-weight: 500;
-}
-
-.journalist-byline {
-  color: var(--text-gray);
-  margin: 0;
-}
-
-.journalist-link {
-  color: var(--byline-color);
-  text-decoration: underline;
+button {
+  background: var(--bee-yellow);
+  color: var(--bee-dark);
+  font-weight: bold;
+  border: none;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--bee-brown);
+  color: var(--bee-white);
+}
+
+.card-list,
+.card-container,
+.card-grid,
+.card-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--bee-white);
+  border: 1px solid var(--bee-border);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px var(--bee-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  margin-bottom: 15px;
+}
+
+.card-title {
+  color: var(--bee-brown);
+  font-weight: 500;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.card-content,
+.content {
+  color: var(--bee-dark);
+  margin: 20px 0;
+  line-height: 1.6;
 }
 
 .view-button {
@@ -200,8 +164,8 @@ button:hover {
   bottom: 20px;
   right: 20px;
   padding: 8px 16px;
-  background-color: var(--app-blue);
-  color: white;
+  background-color: var(--bee-yellow);
+  color: var(--bee-dark);
   border: none;
   border-radius: 4px;
   text-decoration: none;
@@ -209,57 +173,12 @@ button:hover {
 }
 
 .view-button:hover {
-  background-color: var(--hover-blue);
+  background-color: var(--bee-brown);
+  color: var(--bee-white);
 }
 
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.nav-button {
-  padding: 8px 16px;
-  background: var(--primary-blue);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-/* Hide nav buttons on main page */
-.article-list .nav-container {
-  display: none;
-}
-
-.category-tag {
-  display: inline-block;
-  padding: 6px 14px;
-  color: var(--text-gray);
-  background: white;
-  border: 1px solid var(--text-gray);
-  border-radius: 4px;
-  margin-top: 15px;
-  width: fit-content;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.category-tag:hover {
-  background: #f8f9fa;
-}
-
-.article-page .category-tag {
-  display: inline-block; /* Shown on article view page */
-  padding: 5px 12px;
-  background: white;
-  border: 1px solid var(--primary-blue);
-  border-radius: 4px;
-  margin-top: 15px;
-  color: var(--primary-blue);
-}
-
-.actions {
+.actions,
+.action-buttons {
   margin-top: 20px;
   display: flex;
   gap: 10px;
@@ -274,19 +193,19 @@ button:hover {
 }
 
 .button.primary {
-  background: var(--primary-blue);
-  color: white;
+  background: var(--bee-yellow);
+  color: var(--bee-dark);
   border: none;
 }
 
 .button.primary:hover {
-  background: #0056b3;
+  background: var(--bee-brown);
+  color: var(--bee-white);
 }
 
-/* Secondary button style */
 .button-secondary {
   padding: 10px 14px;
-  background-color: var(--main-color);
+  background-color: var(--bee-brown);
   color: white;
   font-weight: bold;
   border: none;
@@ -296,74 +215,248 @@ button:hover {
 }
 
 .button-secondary:hover {
-  background-color: var(--main-color-light);
+  background-color: var(--bee-yellow);
+  color: var(--bee-dark);
 }
 
-/* Tertiary button style */
 .button-tertiary {
   padding: 10px 14px;
   background-color: transparent;
-  color: var(--main-color);
-  border: 1px solid var(--main-color);
+  color: var(--bee-brown);
+  border: 1px solid var(--bee-brown);
   border-radius: 10px;
   cursor: pointer;
   font-size: 0.9em;
 }
 
 .button-tertiary:hover {
-  background-color: var(--main-color-light);
-  color: white;
-  border-color: var(--main-color-light);
+  background-color: var(--bee-yellow);
+  color: var(--bee-dark);
+  border-color: var(--bee-yellow);
 }
 
-.journalist-section {
+/* Forms */
+form {
+  width: 50%;
+  margin: auto;
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  border: 1px solid var(--bee-brown);
+  border-radius: 20px;
+  position: relative; 
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 20px;
+  font-family: inherit;
+  font-size: 1em;
+  border: 1px solid var(--bee-brown);
+  border-radius: 15px;
+}
+
+button.main {
+  width: 100%;
   margin-top: 30px;
   padding: 20px;
-  border-top: 1px solid var(--border-color);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+  background: var(--bee-yellow);
 }
 
-.action-buttons {
+button.main:hover {
+  background: var(--bee-brown);
+  color: var(--bee-white);
+}
+
+.bee-sticker {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  font-size: 3.5rem;
+  filter: drop-shadow(0 2px 8px #ffbe0b88);
+  user-select: none;
+  pointer-events: none;
+  z-index: 10;
+  transition: transform 0.2s;
+}
+
+form:hover .bee-sticker {
+  transform: rotate(-10deg) scale(1.08);
+}
+
+.bee-heart {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 1.2rem;
+  color: #ff8fab;
+  animation: bee-heart-float 1.5s infinite alternate;
+}
+
+@keyframes bee-heart-float {
+  to {
+    transform: translateY(-8px) scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+.beekeeper-list,
+.hive-list {
+  margin: 20px 0;
+}
+
+.beekeeper-item,
+.hive-item {
+  background: var(--bee-white);
+  border: 1px solid var(--bee-border);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px var(--bee-shadow);
+}
+
+.beekeeper-name,
+.hive-name {
+  font-weight: 500;
+  color: var(--bee-brown);
+  font-size: 1.2em;
+}
+
+.beekeeper-info,
+.hive-info {
+  color: var(--bee-dark);
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+.beekeeper-actions,
+.hive-actions {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
-.article-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+.beekeeper-actions {
+  margin-top: 10px;
+}
+.beekeeper-actions button {
+  background: var(--bee-yellow);
+  border: none;
+  border-radius: 6px;
+  padding: 4px 12px;
+  margin-right: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.beekeeper-actions button:hover {
+  background: var(--bee-brown);
+  color: #fff;
 }
 
-.journalist-page {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.beekeeper-button,
+.hive-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
-.article-card {
-    position: relative;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.beekeeper-button {
+  background: var(--bee-yellow);
+  color: var(--bee-dark);
+  border: none;
 }
 
-.article-card .content {
-    display: none;  /* Hide content by default */
+.beekeeper-button:hover {
+  background: var(--bee-brown);
+  color: var(--bee-white);
 }
 
-.article-page .content {  /* Show content only in article view */
-    display: block;
-    margin: 20px 0;
+.hive-button {
+  background: var(--bee-brown);
+  color: white;
+  border: none;
 }
 
-.content {
-  color: var(--text-dark);
-  margin: 20px 0;
-  line-height: 1.6;
+.hive-button:hover {
+  background: var(--bee-yellow);
+  color: var(--bee-dark);
 }
+
+.bee-species-filter {
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.bee-tag {
+  display: inline-block;
+  background: #fffbe7;
+  color: #b8860b;
+  border: 1px solid #ffe066;
+  border-radius: 16px;
+  padding: 4px 14px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 4px;
+}
+.bee-tag.selected,
+.bee-tag:hover {
+  background: #ffe066;
+  color: #fff;
+  border-color: #ffbe0b;
+}
+
+.bee-species-searchbar {
+  margin-bottom: 1em;
+  max-width: 400px;
+}
+.bee-species-input {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ffe066;
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+.bee-species-list {
+  /* max-height: 180px; */
+  /* overflow-y: auto; */
+  background: #fffbe7;
+  border-radius: 8px;
+  border: 1px solid #ffe066;
+  padding: 4px;
+}
+.bee-species-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.bee-species-item.selected,
+.bee-species-item:hover {
+  background: #ffe066;
+  color: #fff;
+}
+.sci-name {
+  color: #b8860b;
+  font-size: 0.95em;
+  margin-left: 4px;
+}
+
+

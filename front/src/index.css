@@ -47,7 +47,7 @@ h3 {
 nav {
   background: var(--bee-brown);
   display: flex;
-  flex-wrap: nowrap;         /* Prevent wrapping */
+  flex-wrap: nowrap;     
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
@@ -56,9 +56,9 @@ nav {
   margin: 0 auto 2rem auto;
   max-width: 900px;
   box-shadow: 0 2px 8px var(--bee-shadow);
-  overflow-x: auto;          /* Allow horizontal scroll if needed */
+  overflow-x: auto;         
   overflow-y: hidden;
-  white-space: nowrap;       /* Prevent text from wrapping */
+  white-space: nowrap;     
 }
 
 .nav-item {
@@ -72,16 +72,16 @@ nav {
   text-align: center;
   letter-spacing: 0.5px;
   margin: 0 2px;
-  white-space: nowrap;       /* Prevent text from wrapping */
+  white-space: nowrap;      
 }
 
 #root {
   margin: 2rem auto;
-  max-width: 900px; /* was 1200px, now a bit narrower */
+  max-width: 900px; 
   background: var(--bee-white);
   border-radius: 16px;
   box-shadow: 0 4px 24px var(--bee-shadow);
-  padding: 2rem 1.5rem; /* add horizontal padding */
+  padding: 2rem 1.5rem; 
 }
 
 button,
@@ -129,16 +129,21 @@ button:hover {
   gap: 20px;
 }
 
-.card {
-  background: var(--bee-white);
-  border: 1px solid var(--bee-border);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px var(--bee-shadow);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+.card, .beekeeper-item, .card-container {
+  border: none;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 32px 0 rgba(255, 190, 11, 0.12), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+  margin-bottom: 2.5em;
+  padding: 2.2em 2em 1.5em 2em;
+  transition: box-shadow 0.18s, transform 0.12s;
   position: relative;
-  display: flex;
-  flex-direction: column;
+}
+
+.card:hover, .beekeeper-item:hover, .card-container:hover {
+  box-shadow: 0 16px 48px 0 rgba(255, 190, 11, 0.18), 0 3px 12px 0 rgba(0,0,0,0.08);
+  transform: translateY(-4px) scale(1.03);
+  background: rgba(255,255,255,0.97);
 }
 
 .card-header {
@@ -313,17 +318,32 @@ form:hover .bee-sticker {
 
 .beekeeper-list,
 .hive-list {
-  margin: 20px 0;
+  /* background: #fff; */
+  /* border: 1px solid var(--bee-border); */
+  /* border-radius: 12px; */
+  /* box-shadow: 0 2px 8px var(--bee-shadow); */
+  /* padding: 20px; */
+  /* margin: 20px 0; */
 }
 
-.beekeeper-item,
-.hive-item {
-  background: var(--bee-white);
+.beekeeper-item {
+  background: #fff;
   border: 1px solid var(--bee-border);
   border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 10px;
   box-shadow: 0 2px 8px var(--bee-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+
+.beekeeper-item:last-child {
+  margin-bottom: 0;
+}
+
+.beekeeper-item:hover {
+  box-shadow: 0 4px 16px var(--bee-shadow);
 }
 
 .beekeeper-name,
@@ -423,24 +443,32 @@ form:hover .bee-sticker {
 
 .bee-species-searchbar {
   margin-bottom: 1em;
-  max-width: 400px;
+  max-width: 100%; 
+  width: 100%;
+  display: block;
 }
+
 .bee-species-input {
   width: 100%;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #ffe066;
-  margin-bottom: 8px;
+  padding: 10px 12px; 
+  border-radius: 8px; 
+  border: 1px solid var(--bee-brown); 
+  margin-bottom: 1em;
   font-size: 1em;
+  box-sizing: border-box;
 }
+
 .bee-species-list {
-  /* max-height: 180px; */
-  /* overflow-y: auto; */
   background: #fffbe7;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid #ffe066;
-  padding: 4px;
+  padding: 12px;
+  margin-bottom: 1.5em;
+  box-shadow: 0 2px 8px var(--bee-shadow);
+  max-height: 250px;      
+  overflow-y: auto;   
 }
+
 .bee-species-item {
   padding: 6px 10px;
   cursor: pointer;

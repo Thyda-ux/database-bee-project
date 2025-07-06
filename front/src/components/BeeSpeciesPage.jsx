@@ -20,10 +20,10 @@ export default function BeeSpeciesPage() {
 
   return (
     <div>
-      <h2>Bee Species</h2>
+      <h2>🐝 Bee Species</h2>
       <input
         type="text"
-        placeholder="Search bee species..."
+        placeholder="Search bee species... 🐝"
         value={query}
         onChange={e => setQuery(e.target.value)}
         className="bee-species-input"
@@ -34,7 +34,7 @@ export default function BeeSpeciesPage() {
           className={`bee-species-item${selected === null ? " selected" : ""}`}
           onClick={() => setSelected(null)}
         >
-          All Species
+          🐝 All Species
         </div>
         {filtered.map(sp => (
           <div
@@ -42,18 +42,18 @@ export default function BeeSpeciesPage() {
             className={`bee-species-item${selected === sp.SpeciesID ? " selected" : ""}`}
             onClick={() => setSelected(sp.SpeciesID)}
           >
-            {sp.CommonName} <span className="sci-name">({sp.ScientificName})</span>
+            🐝 {sp.CommonName} <span className="sci-name">({sp.ScientificName})</span>
           </div>
         ))}
       </div>
       {selected && (
         <div>
-          <h3>Hives with this Species</h3>
+          <h3>🏠 Hives with this Species</h3>
           {hives.map(hive => (
             <div key={hive.HiveID} className="card">
-              <div><b>Location:</b> {hive.Location}</div>
-              <div><b>Status:</b> {hive.Status}</div>
-              <div><b>Beekeeper:</b> {hive.BeekeeperName}</div>
+              <div>🏠 <b>Location:</b> {hive.Location}</div>
+              <div>📋 <b>Status:</b> {hive.Status}</div>
+              <div>🧑‍🌾 <b>Beekeeper:</b> {hive.BeekeeperName}</div>
             </div>
           ))}
         </div>

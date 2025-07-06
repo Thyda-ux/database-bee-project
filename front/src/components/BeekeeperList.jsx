@@ -19,19 +19,19 @@ export default function BeekeeperList() {
 
   return (
     <div className="beekeeper-list">
-      <h2>Beekeepers</h2>
+      <h2>🧑‍🌾 Beekeepers</h2>
       {beekeepers.map(bk => (
         <div key={bk.BeekeeperID} className="beekeeper-item">
           <NavLink to={`/beekeepers/${bk.BeekeeperID}/hives`} className="beekeeper-name">
-            {bk.Name}
+            🧑‍🌾 {bk.Name}
           </NavLink>
           <div className="beekeeper-info">
-            <div>Email: {bk.Email}</div>
-            <div>Phone: {bk.Phone}</div>
+            <div>📧 {bk.Email}</div>
+            <div>📞 {bk.Phone}</div>
           </div>
           <div className="beekeeper-actions">
-            <button onClick={() => navigate(`/beekeepers/${bk.BeekeeperID}/edit`)}>Edit</button>
-            <button onClick={() => handleDelete(bk.BeekeeperID)} style={{marginLeft: "8px"}}>Delete</button>
+            <button onClick={() => navigate(`/beekeepers/${bk.BeekeeperID}/edit`)}>✏️ Edit</button>
+            <button onClick={() => handleDelete(bk.BeekeeperID)} style={{marginLeft: "8px"}}>🗑️ Delete</button>
           </div>
         </div>
       ))}

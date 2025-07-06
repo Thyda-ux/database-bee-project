@@ -19,10 +19,10 @@ export default function PlantsPage() {
 
   return (
     <div>
-      <h2>Plants Nearby</h2>
+      <h2>🌻 Plants Nearby</h2>
       <input
         type="text"
-        placeholder="Search plants..."
+        placeholder="Search plants... 🌱"
         value={query}
         onChange={e => setQuery(e.target.value)}
         className="bee-species-input"
@@ -30,11 +30,11 @@ export default function PlantsPage() {
       />
       {Object.entries(grouped).map(([plant, list]) => (
         <div key={plant}>
-          <h3>{plant}</h3>
+          <h3>🌼 {plant}</h3>
           {list.map(item => (
             <div key={item.PlantID} className="card">
-              <div><b>Hive:</b> {item.HiveID}</div>
-              <div><b>Distance:</b> {item.DistanceM}m</div>
+              <div>🏠 <b>Hive:</b> {item.HiveID}</div>
+              <div>📏 <b>Distance:</b> {item.DistanceM}m</div>
             </div>
           ))}
         </div>

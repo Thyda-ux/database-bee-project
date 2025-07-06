@@ -13,10 +13,10 @@ export default function HoneyProductionPage() {
 
   return (
     <div>
-      <h2>Honey Production</h2>
+      <h2>🍯 Honey Production</h2>
       <input
         type="text"
-        placeholder="Search by Hive or Location..."
+        placeholder="Search by Hive or Location... 🍯"
         value={query}
         onChange={e => setQuery(e.target.value)}
         className="bee-species-input"
@@ -24,10 +24,10 @@ export default function HoneyProductionPage() {
       />
       {filtered.map(rec => (
         <div key={rec.RecordID} className="card">
-          <div><b>Hive:</b> {rec.HiveID}</div>
-          <div><b>Location:</b> {rec.Location}</div>
-          <div><b>Harvest Date:</b> {rec.HarvestDate}</div>
-          <div><b>Weight:</b> {rec.WeightKG} kg</div>
+          <div>🏠 <b>Hive:</b> {rec.HiveID}</div>
+          <div>📍 <b>Location:</b> {rec.Location}</div>
+          <div>📅 <b>Harvest Date:</b> {rec.HarvestDate}</div>
+          <div>⚖️ <b>Weight:</b> {rec.WeightKG} kg</div>
         </div>
       ))}
     </div>

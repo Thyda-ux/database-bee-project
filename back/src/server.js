@@ -6,6 +6,7 @@ import hiveRoutes from "./routes/hiveRoutes.js";
 import environmentRoutes from "./routes/environmentRoutes.js";
 import plantRoutes from "./routes/plantRoutes.js";
 import honeyRoutes from "./routes/honeyRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -18,6 +19,7 @@ app.use("/api/hives", hiveRoutes);
 app.use("/api/environment", environmentRoutes);
 app.use("/api/plants", plantRoutes);
 app.use("/api/honey", honeyRoutes);
+app.use("/api/users", userRoutes);
 
 const PORT = 4000;
 app.listen(PORT, () => {

@@ -9,6 +9,7 @@ const UserList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [refreshPressed, setRefreshPressed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +39,12 @@ const UserList = () => {
         alert("Failed to delete user. Please try again.");
       }
     }
+  };
+
+  const handleRefresh = async () => {
+    setRefreshPressed(true);
+    await loadUsers();
+    setTimeout(() => setRefreshPressed(false), 300); // Reset after 300ms
   };
 
   const filteredUsers = users.filter(user => {
@@ -93,57 +100,117 @@ const UserList = () => {
     <div className="card-container">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
         <h2>User Management</h2>
-        <Link to="/users/add" className="button primary">
+        <Link to="/users/create" className="button primary">
           + Add New User
         </Link>
       </div>
 
       {/* Filters */}
       <div className="filters-section">
-        <div className="filters-grid">
-          <div className="filter-group">
-            <label htmlFor="search">🔍 Search Users</label>
-            <input
-              type="text"
-              id="search"
-              placeholder="Search by username or email..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
+        <div className="filters-grid" style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          flexWrap: 'wrap',
+          minHeight: '48px',
+          width: '100%'
+        }}>
+            <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '56px' }}>
+              <label htmlFor="search" style={{ marginBottom: 2, fontSize: '0.95rem' }}>🔍 Search Users</label>
+              <input
+                type="text"
+                id="search"
+                placeholder="Search by username or email..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ height: '40px', minWidth: '180px', boxSizing: 'border-box', padding: '0 12px', fontSize: '1rem', margin: 0 }}
+              />
+            </div>
 
-          <div className="filter-group">
-            <label htmlFor="roleFilter">👤 Role</label>
-            <select
-              id="roleFilter"
-              value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value)}
-            >
-              <option value="all">All Roles</option>
-              <option value="admin">Admin</option>
-              <option value="manager">Manager</option>
-              <option value="user">User</option>
-            </select>
-          </div>
+            <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '56px' }}>
+              <label htmlFor="roleFilter" style={{ marginBottom: 2, fontSize: '0.95rem' }}>👤 Role</label>
+              <select
+                id="roleFilter"
+                value={roleFilter}
+                onChange={(e) => setRoleFilter(e.target.value)}
+                style={{
+                  height: '40px',
+                  minWidth: '140px',
+                  maxWidth: '180px',
+                  padding: '0 12px',
+                  fontSize: '1rem',
+                  background: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  appearance: 'none',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  margin: 0
+                }}
+              >
+                <option value="all">All Roles</option>
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="user">User</option>
+              </select>
+            </div>
 
-          <div className="filter-group">
-            <label htmlFor="statusFilter">📊 Status</label>
-            <select
-              id="statusFilter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
+            <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '56px' }}>
+              <label htmlFor="statusFilter" style={{ marginBottom: 2, fontSize: '0.95rem' }}>📊 Status</label>
+              <select
+                id="statusFilter"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                style={{
+                  height: '40px',
+                  minWidth: '140px',
+                  maxWidth: '180px',
+                  padding: '0 12px',
+                  fontSize: '1rem',
+                  background: '#fff',
+                  border: '1px solid #ccc',
+                  borderRadius: '4px',
+                  appearance: 'none',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  margin: 0
+                }}
+              >
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
 
-          <div className="filter-group button-group">
-            <button onClick={loadUsers} className="button-secondary refresh-btn">
-              🔄 Refresh
-            </button>
-          </div>
+            <div className="filter-group button-group" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '56px' }}>
+              <label style={{ marginBottom: 2, fontSize: '0.95rem', visibility: 'hidden' }}>Refresh</label>
+              <button
+                onClick={handleRefresh}
+                style={{
+                  background: refreshPressed ? "#fffbe6" : "#ffe082",
+                  color: refreshPressed ? "#b48a3c" : "#6d4c00",
+                  border: `2px solid #ffe082`,
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  padding: "0.5em 1.5em",
+                  fontWeight: 600,
+                  boxShadow: refreshPressed ? '0 0 0 2px #ffe082' : 'none',
+                  transition: "all 0.2s",
+                  minWidth: '120px',
+                  height: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1rem',
+                  margin: 0
+                }}
+              >
+                {refreshPressed ? "Refreshing..." : "Refresh"}
+              </button>
+            </div>
         </div>
       </div>
 
@@ -221,7 +288,7 @@ const UserList = () => {
 
                 <div className="user-actions">
                   <button
-                    onClick={() => navigate(`/users/${user.UserID}/edit`)}
+                    onClick={() => navigate(`/users/edit/${user.UserID}`)}
                     className="button-secondary"
                     style={{ marginRight: "0.5rem" }}
                   >

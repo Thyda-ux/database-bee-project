@@ -9,10 +9,16 @@ function extractBuilding(location) {
 
 export default function LocationPage() {
   const [hives, setHives] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => { getAllHives().then(setHives); }, []);
 
+  // Filter hives by location search
+  const filteredHives = search.trim()
+    ? hives.filter(hive => hive.Location && hive.Location.toLowerCase().includes(search.toLowerCase()))
+    : hives;
+
   // Group by building
-  const grouped = hives.reduce((acc, hive) => {
+  const grouped = filteredHives.reduce((acc, hive) => {
     const building = extractBuilding(hive.Location);
     acc[building] = acc[building] || [];
     acc[building].push(hive);
@@ -22,6 +28,14 @@ export default function LocationPage() {
   return (
     <div>
       <h2>Locations & Buildings</h2>
+      <input
+        type="text"
+        placeholder="Search by location..."
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        style={{marginBottom: "1em", padding: "0.5em", width: "100%"}}
+      />
+      {Object.entries(grouped).length === 0 && <div>No locations found.</div>}
       {Object.entries(grouped).map(([building, hives]) => (
         <div key={building}>
           <h3>{building}</h3>

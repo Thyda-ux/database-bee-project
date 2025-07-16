@@ -97,6 +97,8 @@ export async function loginUser(req, res) {
     }
 
     // Verify password
+    console.log('Password from user:', password, '| Length:', password.length);
+    console.log('Hash from DB:', user.PasswordHash, '| Length:', user.PasswordHash.length);
     console.log('🔐 Comparing passwords...');
     const isValidPassword = await bcrypt.compare(password, user.PasswordHash);
     console.log('🔐 Password comparison result:', isValidPassword);

@@ -109,7 +109,7 @@ const LoginForm = ({ onLogin }) => {
           borderRadius: "8px",
           border: "1px solid #dee2e6"
         }}>
-          <p><strong>Admin:</strong> admin / Beekeeper2024!</p>
+          <p><strong>Admin:</strong> admin / admin123</p>
           <p><strong>Note:</strong> This authenticates against the MySQL database</p>
         </div>
       </div>

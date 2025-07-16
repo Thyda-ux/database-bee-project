@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginForm from './components/LoginForm';
 import UserList from './components/UserList';
 import UserForm from './components/UserForm';
+import UserCreatePage from './components/UserCreatePage';
+import UserEditPage from './components/UserEditPage';
 import BeekeeperList from './components/BeekeeperList';
 import BeekeeperForm from './components/BeekeeperForm';
 import BeekeeperHivesPage from './components/BeekeeperHivesPage';
@@ -11,6 +13,8 @@ import EnvironmentPage from './components/EnvironmentPage';
 import HoneyProductionPage from './components/HoneyProductionPage';
 import PlantsPage from './components/PlantsPage';
 import LocationPage from './components/LocationPage';
+import BeekeeperEditPage from './components/BeekeeperEditPage';
+import BeekeeperCreatePage from './components/BeekeeperCreatePage';
 
 // Protected Route Component
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -124,7 +128,7 @@ function App() {
               path="/users/create" 
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <UserForm />
+                  <UserCreatePage />
                 </ProtectedRoute>
               } 
             />
@@ -133,7 +137,7 @@ function App() {
               path="/users/edit/:id" 
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <UserForm />
+                  <UserEditPage />
                 </ProtectedRoute>
               } 
             />
@@ -151,7 +155,7 @@ function App() {
               path="/beekeepers/create" 
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <BeekeeperForm />
+                  <BeekeeperCreatePage />
                 </ProtectedRoute>
               } 
             />
@@ -161,6 +165,15 @@ function App() {
               element={
                 <ProtectedRoute isAuthenticated={isAuthenticated}>
                   <BeekeeperHivesPage />
+                </ProtectedRoute>
+              } 
+            />
+
+            <Route 
+              path="/beekeepers/edit/:id" 
+              element={
+                <ProtectedRoute isAuthenticated={isAuthenticated}>
+                  <BeekeeperEditPage />
                 </ProtectedRoute>
               } 
             />

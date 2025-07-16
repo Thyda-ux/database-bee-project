@@ -29,7 +29,7 @@ export async function updateBeekeeper(id, data) {
     "UPDATE Beekeeper SET Name = ?, Email = ?, Phone = ? WHERE BeekeeperID = ?",
     [Name, Email, Phone, id]
   );
-  return { BeekeeperID: id, Name, Email, Phone };
+  return getBeekeeperById(id);
 }
 
 // Delete beekeeper

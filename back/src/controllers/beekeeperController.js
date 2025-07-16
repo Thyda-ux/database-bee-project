@@ -21,7 +21,7 @@ export async function getBeekeeperById(req, res) {
     }
     res.json(beekeeper);
   } catch (error) {
-    console.error("Error fetching beekeeper:", error);
+    console.error("Error in getBeekeeperById:", error);
     res.status(500).json({ message: "Server error" });
   }
 }
@@ -49,7 +49,7 @@ export async function updateBeekeeper(req, res) {
     }
     res.json(updatedBeekeeper);
   } catch (error) {
-    console.error("Error updating beekeeper:", error);
+    console.error("Error in updateBeekeeper:", error);
     res.status(500).json({ message: "Server error" });
   }
 }

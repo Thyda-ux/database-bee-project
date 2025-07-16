@@ -73,19 +73,21 @@ export async function getUserByEmail(email) {
 // Create new user
 export async function createUser(userData) {
   const { username, email, passwordHash, role, permissions } = userData;
-  
+  const defaultMySQLPassword = 'User@123'; // You may want to generate or require a password in production
+  const dbName = process.env.DB_NAME || 'Smart_Beekeeper';
+
   const connection = await pool.getConnection();
   try {
     await connection.beginTransaction();
-    
+
     // Insert user
     const [userResult] = await connection.query(`
       INSERT INTO Users (Username, Email, PasswordHash, Role, IsActive, CreatedAt)
       VALUES (?, ?, ?, ?, 1, NOW())
     `, [username, email, passwordHash, role]);
-    
+
     const userId = userResult.insertId;
-    
+
     // Insert user permissions if provided
     if (permissions && permissions.length > 0) {
       const permissionValues = permissions.map(permission => [userId, permission]);
@@ -94,9 +96,12 @@ export async function createUser(userData) {
         VALUES ?
       `, [permissionValues]);
     }
-    
+
+    // Create MySQL user and grant privileges
+    await createMySQLUser(username, defaultMySQLPassword, dbName);
+
     await connection.commit();
-    
+
     // Return the created user (without password)
     return getUserById(userId);
   } catch (error) {
@@ -151,12 +156,21 @@ export async function updateUser(id, userData) {
 }
 
 // Update user password
-export async function updateUserPassword(id, passwordHash) {
+export async function updateUserPassword(id, passwordHash, plainPassword, username) {
+  // Update app database password hash
   await pool.query(`
     UPDATE Users 
     SET PasswordHash = ?
     WHERE UserID = ?
   `, [passwordHash, id]);
+
+  // Update MySQL user password (for login to MySQL)
+  if (plainPassword && username) {
+    await pool.query(
+      `ALTER USER \`${username}\`@'localhost' IDENTIFIED WITH mysql_native_password BY ?`,
+      [plainPassword]
+    );
+  }
 }
 
 // Delete user
@@ -196,12 +210,16 @@ export async function getUserPermissions(userId) {
 
 // Get all available permissions
 export async function getAllPermissions() {
-  const [rows] = await pool.query(`
-    SELECT DISTINCT Permission 
-    FROM UserPermissions 
-    ORDER BY Permission
-  `);
-  return rows.map(row => row.Permission);
+  // Return a static list of all possible permissions
+  return [
+    "user:create", "user:read", "user:update", "user:delete",
+    "beekeeper:create", "beekeeper:read", "beekeeper:update", "beekeeper:delete",
+    "hive:create", "hive:read", "hive:update", "hive:delete",
+    "species:create", "species:read", "species:update", "species:delete",
+    "environment:create", "environment:read", "environment:update", "environment:delete",
+    "plant:create", "plant:read", "plant:update", "plant:delete",
+    "honey:create", "honey:read", "honey:update", "honey:delete"
+  ];
 }
 
 // Update last login
@@ -235,4 +253,28 @@ export async function getUsersWithPermissions() {
     ...row,
     Permissions: row.Permissions ? row.Permissions.split(',') : []
   }));
+}
+
+export async function createMySQLUser(username, password, dbName) {
+  try {
+    // Create MySQL user (interpolate username and host directly for localhost)
+    await pool.query(
+      `CREATE USER IF NOT EXISTS \`${username}\`@'localhost' IDENTIFIED WITH mysql_native_password BY ?`,
+      [password]
+    );
+    // Grant privileges
+    await pool.query(
+      `GRANT ALL PRIVILEGES ON \`${dbName}\`.* TO \`${username}\`@'localhost'`
+    );
+    // Always set the password to ensure it matches
+    await pool.query(
+      `ALTER USER \`${username}\`@'localhost' IDENTIFIED WITH mysql_native_password BY ?`,
+      [password]
+    );
+    // No need to run FLUSH PRIVILEGES here
+    return true;
+  } catch (err) {
+    console.error("Error creating MySQL user:", err);
+    throw err;
+  }
 }

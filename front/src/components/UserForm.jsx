@@ -142,7 +142,7 @@ const UserForm = ({ initialData, onSubmit, onCancel }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent page reload
     
     if (!validateForm()) {
       return;
@@ -282,21 +282,20 @@ const UserForm = ({ initialData, onSubmit, onCancel }) => {
           <p className="permissions-description">
             Select the permissions this user should have. You can customize the default role permissions below.
           </p>
-          
-          <div className="permissions-grid">
+          <div className="permissions-grid" style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #eee', padding: '1rem', borderRadius: '8px', background: '#fafafa', marginBottom: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
             {Object.entries(groupedPermissions).map(([category, permissions]) => (
               permissions.length > 0 && (
                 <div key={category} className="permission-category">
                   <h4 className="category-title">{category}</h4>
                   <div className="permission-options">
                     {permissions.map(permission => (
-                      <label key={permission} className="permission-option">
+                      <label key={permission} className="permission-option" style={{ display: 'flex', alignItems: 'center', marginBottom: '0.25rem' }}>
                         <input
                           type="checkbox"
                           checked={formData.permissions.includes(permission)}
                           onChange={() => handlePermissionToggle(permission)}
                         />
-                        <span className="permission-text">
+                        <span className="permission-text" style={{ marginLeft: '0.5em' }}>
                           {permission.split(":")[1].charAt(0).toUpperCase() + permission.split(":")[1].slice(1)}
                         </span>
                       </label>

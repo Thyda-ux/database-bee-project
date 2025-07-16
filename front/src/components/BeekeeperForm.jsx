@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function BeekeeperForm({ initialData = {}, onSubmit }) {
+export default function BeekeeperForm({ initialData = {}, onSubmit, onCancel }) {
   const [form, setForm] = useState({
     Name: initialData.Name || "",
     Email: initialData.Email || "",
@@ -19,18 +19,18 @@ export default function BeekeeperForm({ initialData = {}, onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       <h2>{initialData.BeekeeperID ? "Edit Beekeeper" : "Add Beekeeper"}</h2>
-      <label>
-        Name:
+      <label htmlFor="beekeeper-name">Name:
         <input
+          id="beekeeper-name"
           name="Name"
           value={form.Name}
           onChange={handleChange}
           required
         />
       </label>
-      <label>
-        Email:
+      <label htmlFor="beekeeper-email">Email:
         <input
+          id="beekeeper-email"
           name="Email"
           type="email"
           value={form.Email}
@@ -38,9 +38,9 @@ export default function BeekeeperForm({ initialData = {}, onSubmit }) {
           required
         />
       </label>
-      <label>
-        Phone:
+      <label htmlFor="beekeeper-phone">Phone:
         <input
+          id="beekeeper-phone"
           name="Phone"
           value={form.Phone}
           onChange={handleChange}
@@ -50,6 +50,11 @@ export default function BeekeeperForm({ initialData = {}, onSubmit }) {
       <button className="main" type="submit">
         {initialData.BeekeeperID ? "Update" : "Add"} Beekeeper
       </button>
+      {onCancel && (
+        <button type="button" onClick={onCancel} style={{ marginLeft: '1rem' }}>
+          Cancel
+        </button>
+      )}
       <span className="bee-sticker" role="img" aria-label="bee">
         🐝
         <span className="bee-heart">💛</span>
